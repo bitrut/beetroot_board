@@ -1,20 +1,19 @@
 //TODO: put this in some kind of module -- global object is fine for now
-var wsUri = "ws://173.45.228.42:8787/";
 
 var output;
 var clients;
 
 function init() {
-
-    output = document.getElementById("chatLog");
-    if (typeof WebSocket === "undefined") {
-      alert("Websockets Not Supported!");
-    }
     testWebSocket();
 }
 
 function testWebSocket() {
-    websocket = new WebSocket(wsUri);
+	s = new io.Socket('localhost', {port: 8001, rememberTransport: false});
+	s.connect();
+	s.addEvent('message', function(data) {
+			onMessage(data);
+        });
+	/*
     websocket.onopen = function(evt) {
         onOpen(evt)
     };
@@ -29,8 +28,7 @@ function testWebSocket() {
 
     websocket.onerror = function(evt) {
         onError(evt)
-    };
-
+    };*/
 }
 
 function onOpen(evt) {
@@ -53,9 +51,8 @@ function onClose(evt) {
     writeToScreen("DISCONNECTED");
 }
 
-function onMessage(evt) {
-    //writeToScreen('<span style="color: blue;">RESPONSE: ' + evt.data + '</span>');
-    decodeMessage(evt.data);
+function onMessage(data) {
+    decodeMessage(data);
 }
 
 function onError(evt) {
@@ -77,7 +74,7 @@ function createCoordMessage(x1,y1,x2,y2, strokeStyle){
 }
 
 function doSend(message) {
-    websocket.send(message);
+    s.send(message);
 }
 
 function createClearMessage() {
