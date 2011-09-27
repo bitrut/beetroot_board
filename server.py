@@ -40,7 +40,7 @@ ChatRouter = tornadio.get_router(ChatConnection)
 
 #configure the Tornado application
 application = tornado.web.Application(
-    [(r"/", IndexHandler, None), ChatRouter.route()],
+    [(r"/", IndexHandler), ChatRouter.route()],
     enabled_protocols = ['websocket',
                          'flashsocket',
                          'xhr-multipart',
