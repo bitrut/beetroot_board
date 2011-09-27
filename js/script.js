@@ -8,7 +8,7 @@ function init() {
 }
 
 function testWebSocket() {
-	s = new io.Socket('192.168.1.10', {port: 8001, rememberTransport: false});
+	s = new io.Socket('localhost', {port: 8001, rememberTransport: false});
 	s.connect();
 	s.addEvent('message', function(data) {
 			onMessage(data);
