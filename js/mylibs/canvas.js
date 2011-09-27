@@ -6,13 +6,8 @@ var lastX=0, lastY=0;
 function draw(data){
     
     if ( data.clear === true){
-      canvas.width = canvas.width;
-      return;
-    }
-
-	if ( data.postIt === true){
-      drawPostit();
-      return;
+        canvas.width = canvas.width;
+        return;
     }
 	
     context.beginPath();
@@ -35,34 +30,20 @@ function draw(data){
 }
 
 function clearCanvas() {
-  canvas.width = canvas.width;
-  createClearMessage();
+    canvas.width = canvas.width;
+    createClearMessage();
 };
 
-function changeColor(color) {
-    mycolor = color;
+function changeColor(selectObj) {
+    var idx = selectObj.selectedIndex;
+    mycolor = selectObj.options[idx].value;
 }
 
 function drawPostitBtn() {
     createPostItMessage();
-	drawPostit();
+    drawPostit();
 }
 
-function drawPostit(){    	
-	// draw yellow rectangle 
-	context.beginPath();
-	context.lineWidth = 2;
-	context.strokeStyle = "black";
-	context.fillStyle = "yellow";
-	context.rect(100, 150, 300, 250);
-	context.fill();
-	context.stroke();
-	
-	context.fillStyle    = '#00f';
-	context.font         = 'italic 12px sans-serif';
-	context.textBaseline = 'top';
-	context.fillText  ('Post-it!', 110, 160);
-}
 
 window.addEventListener('load', function () {      
     var started = false;
@@ -81,8 +62,8 @@ window.addEventListener('load', function () {
             return;
         }
 	
-        canvas.width=window.innerWidth;
-        canvas.height=window.innerHeight;
+        canvas.width=window.innerWidth*0.98;
+        canvas.height=window.innerHeight*0.98;
 
         // Get the 2D canvas context.
         context = canvas.getContext('2d');

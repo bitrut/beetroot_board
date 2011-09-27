@@ -1,13 +1,11 @@
 from os import path as op
-import sys
 
 import tornado.web
 import tornadio
 import tornadio.router
 import tornadio.server
-
 import thread
-import time
+import logging
 
 global connections
 
@@ -54,7 +52,6 @@ application = tornado.web.Application(
 
 if __name__ == "__main__":
     # initialize login
-    import logging
     logging.getLogger().setLevel(logging.DEBUG)
     
     # initliaze connections instance

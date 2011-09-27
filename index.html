@@ -23,7 +23,6 @@
         <!-- CSS: implied media=all -->
         <!-- CSS concatenated and minified via ant build script-->
         <link rel="stylesheet" href="css/style.css">
-        <link rel="stylesheet" href="css/beetrootstyle.css">
         <!-- end CSS-->
 
         <!-- More ideas for your <head> here: h5bp.com/d/head-Tips -->
@@ -32,7 +31,7 @@
              Modernizr enables HTML5 elements & feature detects; Respond is a polyfill for min/max-width CSS3 Media Queries
              For optimal performance, use a custom Modernizr build: www.modernizr.com/download/ -->
         <script src="js/libs/modernizr-2.0.6.min.js"></script>
-		
+
     </head>
 
     <body>
@@ -42,18 +41,21 @@
 
             </header>
 
-			<section>
-				 <input type="button" value="Post-It" onClick="drawPostitBtn()">
-				 <input type="button" value="Red" onClick="changeColor('red')">
-				 <input type="button" value="Yellow" onClick="changeColor('yellow')">
-				 <input type="button" value="Blue" onClick="changeColor('blue')">
-				 <input type="button" value="Green" onClick="changeColor('green')">
-				 <input type="button" value="Clear Canvas" style="float: right;" onClick="clearCanvas()">
-			</section>
-            
+            <section>
+                <select onchange="changeColor(this);">
+                    <option value="black">Black</option>
+                    <option value="red">Red</option>
+                    <option value="yellow">Yellow</option>
+                    <option value="blue">Blue</option>
+                    <option value="green">Green</option>
+                </select>
+
+                <input type="button" value="Clear Canvas" style="float: right;" onClick="clearCanvas()">
+            </section>
+
             <canvas id="board" style="border:1px solid green; cursor:crosshair" >
 
-			<p>Unfortunately, your browser is currently unsupported by our web 
+                <p>Unfortunately, your browser is currently unsupported by our web
 			application.  We are sorry for the inconvenience. Please use one of the 
 			supported browsers listed below, or draw the image you want using an 
 			offline tool.</p>
@@ -65,11 +67,6 @@
                 </p>
             </canvas>
 
-
-            <div id="chatLog">  
-            </div><!-- #chatLog -->  
-            <input type="button" value="broadcast message" onClick="sendMessage();return false;"/>
-
             <footer>
             </footer>
         </div> <!--! end of #container -->
@@ -80,8 +77,8 @@
         <!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if offline
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/libs/jquery-1.6.2.min.js"><\/script>')</script> -->
-		<script defer src="http://cdn.socket.io/stable/socket.io.js"></script>
-		<script>WEB_SOCKET_SWF_LOCATION = 'http://cdn.socket.io/stable/WebSocketMain.swf';</script>
+        <script defer src="http://cdn.socket.io/stable/socket.io.js"></script>
+        <script>WEB_SOCKET_SWF_LOCATION = 'http://cdn.socket.io/stable/WebSocketMain.swf';</script>
 
 
         <!-- scripts concatenated and minified via ant build script-->
@@ -89,23 +86,6 @@
         <script defer src="js/script.js"></script>
         <script defer src="js/mylibs/canvas.js"></script>
         <!-- end scripts-->
-
-
-        <!-- mathiasbynens.be/notes/async-analytics-snippet Change UA-XXXXX-X to be your site's ID -->
-        <!--<script>
-          var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview'],['_trackPageLoadTime']];
-          (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.async=1;
-          g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
-          s.parentNode.insertBefore(g,s)}(document,'script'));
-        </script>-->
-
-
-        <!-- Prompt IE 6 users to install Chrome Frame. Remove this if you want to support IE 6.
-             chromium.org/developers/how-tos/chrome-frame-getting-started -->
-        <!--[if lt IE 7 ]>
-          <script src="//ajax.googleapis.com/ajax/libs/chrome-frame/1.0.3/CFInstall.min.js"></script>
-          <script>window.attachEvent('onload',function(){CFInstall.check({mode:'overlay'})})</script>
-        <![endif]-->
 
     </body>
 </html>
